@@ -5,6 +5,9 @@ import pickle
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import pandas
+import numpy
+import matplotlib
 
 app = Flask(__name__)
 
@@ -47,6 +50,28 @@ def upload():
 
     # Save the uploaded file
     filename = images.save(request.files['image'])
+    
+    preds = model.predict(image)
+    
+    masked_image = preds * image
+    
+    plt.subplot(3, 4, 2)
+    plt.axis(False)
+    plt.grid(False)
+    plt.title(f'Uploaded Image')
+    plt.imshow(image)
+    
+    plt.subplot(3, 4, 6)
+    plt.axis(False)
+    plt.grid(False)
+    plt.title(f'Predicted mask')
+    plt.imshow(preds, cmap = 'gray')
+    
+    plt.subplot(3, 4, 10)
+    plt.axis(False)
+    plt.grid(False)
+    plt.title(f'Masked image')
+    plt.imshow(masked_image)
     
 
     # Return the filename of the saved file
