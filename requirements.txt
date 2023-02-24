@@ -11,3 +11,4 @@ flask-reuploaded
 matplotlib
 pandas
 numpy
+tensorflow
