@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 import pandas
 import numpy
 import matplotlib
-
+import tensorflow
 app = Flask(__name__)
 
 # Load the pickled data and store it in a global variable
@@ -51,14 +51,11 @@ def upload():
     # Save the uploaded file
     filename = images.save(request.files['image'])
     
-    preds = model.predict(image)
-    
-    masked_image = preds * image
     
     
 
     # Return the filename of the saved file
-    return masked_image, 200
+    return filename, 200
 
 
 
