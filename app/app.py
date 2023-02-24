@@ -53,13 +53,14 @@ def upload():
     
     image_data=np.array(filename)
     
-    image_data=str(image_data)
+    display=Image.fromarray(image_data, 'RGB')
+    display.save('my.png')
     
     
     
 
     # Return the filename of the saved file
-    return image_data, 200
+    return display.show, 200
 
 
 
