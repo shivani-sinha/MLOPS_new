@@ -49,13 +49,17 @@ def upload():
         return 'No file uploaded', 400
 
     # Save the uploaded file
-    filename = images.save(request.files['image'])
+    filename = images.save(request.files[image])
+    
+    image_data=np.array(filename)
+    
+    image_data=str(image_data)
     
     
     
 
     # Return the filename of the saved file
-    return filename, 200
+    return image_data, 200
 
 
 
