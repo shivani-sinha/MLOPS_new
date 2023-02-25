@@ -49,18 +49,32 @@ def upload():
         return 'No file uploaded', 400
 
     # Save the uploaded file
-    filename = images.save(request.files[image])
+    # Save the uploaded file
+    filename = images.save(request.files['image'])
+    img = Image.open(filename)
+    img = np.array(img)
     
-    image_data=np.array(filename)
+    #results = cv.detect_common_objects(img, model='yolov3')
+   
     
-    display=Image.fromarray(image_data, 'RGB')
-    display.save('my.png')
+    preds = model.predict(img)
+    
+    masked_images = preds * img
+    
+    plt.subplot(3, 4, 2)
+    plt.axis(False)
+    plt.grid(False)
+     results= plt.imshow(img)
+     my_string = str(results)
+
+    # Return the filename of the saved file
+    return my_string, 200
+    
+    
     
     
     
 
-    # Return the filename of the saved file
-    return display.show, 200
 
 
 
