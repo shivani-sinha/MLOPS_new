@@ -64,7 +64,7 @@ def upload():
     plt.subplot(3, 4, 2)
     plt.axis(False)
     plt.grid(False)
-     results= plt.imshow(img)
+     results= plt.imshow(masked_images)
      my_string = str(results)
 
     # Return the filename of the saved file
